@@ -1,0 +1,42 @@
+/* @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"); */
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #11191f;
+    color: white;
+}
+
+#btnStyle{
+    background-color: #1095c1;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+}
+
+#btnStyle:hover{
+    background-color: #1095c1a7;
+}
+
+
+#goBack{
+    
+    display: inline-block;
+    color: #eeeeee;
+    text-decoration: none
+}
+
+#goBack:hover{
+    color: #1095c1;
+}
+
+input{
+    background-color: #eeeeee;
+}
+
+
+
+/* #numTicket{
+    color:  #1095c1;
+} */
