@@ -1,7 +1,7 @@
 # Web Socket Chat con NodeJS
 
 Esta aplicación muestra un chat construido con **sockets** con los cuales puedes hacer pruebas de **chat entre dos o mas clientes**
-Entre al siguiente enlace:** <https://node-sockets-chat-mpd.herokuapp.com/chat.html>** , aquí se encuentra la aplicación desplegada
+Entre al siguiente enlace:** <https://node-sockets-chat-mpd.herokuapp.com>** , aquí se encuentra la aplicación desplegada
 
 Si estas con **Google** la aplicación te logueara automáticamente y te mandara al chat
 
