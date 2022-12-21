@@ -1,83 +1,77 @@
 // const { auth } = require("google-auth-library");
 
-const miFormulario = document.querySelector('form');
+const miFormulario = document.querySelector("form");
 const socket = io();
 
+const url = window.location.hostname.includes("localhost")
+  ? "http://localhost:8080/api/auth/"
+  : "https://node-sockets-chat-mpd.herokuapp.com/api/auth/";
 
-const url = ( window.location.hostname.includes('localhost') )
-            ? 'http://localhost:8080/api/auth/'
-            : 'https://node-sockets-chat-mpd.herokuapp.com/api/auth/';
+miFormulario.addEventListener("submit", (ev) => {
+  // Prevenir el evento por defecto de recargar la pagina
+  ev.preventDefault();
 
+  const formData = {};
 
-miFormulario.addEventListener('submit', ev => {
+  for (let el of miFormulario.elements) {
+    if (el.name.length > 0) formData[el.name] = el.value;
+  }
 
-    // Prevenir el evento por defecto de recargar la pagina
-    ev.preventDefault();
-
-    const formData = {};
-
-    for(let el of miFormulario.elements){
-        if(el.name.length > 0) 
-            formData[el.name] = el.value;
-    }
-
-    fetch(url + "login", {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {'Content-Type': 'application/json'}
+  fetch(url + "login", {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((resp) => resp.json())
+    .then(({ msg, token }) => {
+      if (msg) {
+        return console.error(msg);
+      }
+      localStorage.setItem("token", token);
+      window.location = "chat.html";
     })
-    .then(resp => resp.json())
-    .then(({msg, token}) => {
-        if(msg){
-            return console.error(msg);
-        }
-        localStorage.setItem("token",token);
-        window.location = 'chat.html';
-    })
-    .catch(err => {
-        console.log(err)
-    })
-})
-
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 function onSignIn(googleUser) {
+  // var profile = googleUser.getBasicProfile();
+  // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  // console.log('Name: ' + profile.getName());
+  // console.log('Image URL: ' + profile.getImageUrl());
+  // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
+  var id_token = googleUser.getAuthResponse().id_token;
+  const data = { id_token };
 
-    // var profile = googleUser.getBasicProfile();
-    // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    // console.log('Name: ' + profile.getName());
-    // console.log('Image URL: ' + profile.getImageUrl());
-    // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-
-    var id_token = googleUser.getAuthResponse().id_token;
-    const data = { id_token };
-
-    fetch( url+"google", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( data )
+  fetch(url + "google", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+    .then((resp) => resp.json())
+    .then(({ token }) => {
+      localStorage.setItem("token", token);
+      window.location = "chat.html";
     })
-    .then( resp => resp.json() )
-    .then( ({token}) => {
-        localStorage.setItem('token', token);
-        window.location = 'chat.html';
-    } )
-    .catch( console.log );
-    
+    .catch(console.log);
 }
 
 function signOut() {
+  window.open(
+    "https://accounts.google.com/Logout",
+    "_blank",
+    "width=640, height=480"
+  );
 
-    window.open('https://accounts.google.com/Logout',"_blank","width=640, height=480");
+  // window.location.href = "https://accounts.google.com/Logout"
 
-    // window.location.href = "https://accounts.google.com/Logout"
-
-    // var auth2 = gapi.auth2.getAuthInstance();
-    // auth.signIn({
-    //     prompt: 'select_account'
-    // });
-    // auth2.signOut().then(function () {
-    // console.log('User signed out.');
-    // });
+  // var auth2 = gapi.auth2.getAuthInstance();
+  // auth.signIn({
+  //     prompt: 'select_account'
+  // });
+  // auth2.signOut().then(function () {
+  // console.log('User signed out.');
+  // });
 }
-
