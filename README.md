@@ -52,11 +52,10 @@ Váyase luego a la que si dejo abierta y podrá observar que ya no aparece el ot
 
 ---
 
-### Contact me
+### Contact
  
 🌐 Portafolio web: https://mattpding11.github.io/mateo 
   
-🌐 LinkedIn: https://github.com/mattpding11
+🌐 LinkedIn: https://www.linkedin.com/in/mateo-pe%C3%B1aranda-diaz-fullstack-developer/
   
 ✉️ Correo: mateo_1999_7@outlook.es
-
