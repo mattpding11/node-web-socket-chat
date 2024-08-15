@@ -58,4 +58,4 @@ Váyase luego a la que si dejo abierta y podrá observar que ya no aparece el ot
   
 🌐 LinkedIn: [https://www.linkedin.com/in/mateo-pe%C3%B1aranda-diaz-fullstack-developer/](https://www.linkedin.com/in/mateo-penaranda-diaz-fullstack-developer/)
   
-✉️ Correo: mateo_1999_7@outlook.es
+✉️ Correo: mateo_1999_7@outlook.es 
