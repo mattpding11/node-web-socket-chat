@@ -1,4 +1,5 @@
-require("dotenv").config();
+process.loadEnvFile()
+
 const Server = require("./models/server");
 
 const server = new Server();

@@ -13,9 +13,10 @@ const txtMensaje = document.querySelector('#txtMensaje')
 const ulUsuarios = document.querySelector('#ulUsuarios')
 const ulMensaje = document.querySelector('#ulMensaje')
 const btnSalir = document.querySelector('#btnSalir')
+const button = document.querySelector('#btnEnter');
 
 const validarJWT = async() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');  
 
     if(token.length <= 10){
         window.location = 'index.html';
@@ -38,8 +39,8 @@ const validarJWT = async() => {
 
 }
 
-txtMensaje.addEventListener('keyup', ({keyCode}) => {
-    
+
+function sendMessage(keyCode){
     const mensaje = txtMensaje.value;
     const uid = txtUid.value;
 
@@ -51,9 +52,15 @@ txtMensaje.addEventListener('keyup', ({keyCode}) => {
     socket.emit('enviar-mensaje',{uid,mensaje});
 
     txtMensaje.value = '';
-  
+}
+
+txtMensaje.addEventListener('keyup', ({keyCode}) => {
+   sendMessage(keyCode)
 })
 
+button.addEventListener('click', () => {
+    sendMessage(13)
+});
 
 
 const conectarSocket = async() => {
@@ -153,6 +160,8 @@ btnSalir.addEventListener('click', ()=> {
     //     window.location = 'index.html';
     // });
 });
+
+
 
 
 const main = async() => {
