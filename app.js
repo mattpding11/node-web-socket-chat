@@ -1,4 +1,4 @@
-process.loadEnvFile()
+// process.loadEnvFile()
 
 const Server = require("./models/server");
 
