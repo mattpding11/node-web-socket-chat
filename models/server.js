@@ -10,6 +10,7 @@ class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
+    console.log("Puerto", this.port);
     this.server = createServer(this.app);
     this.io = socket(this.server);
 

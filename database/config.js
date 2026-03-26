@@ -17,7 +17,7 @@ const dbConnection = async() => {
 
     } catch (error) {
         console.log(error);
-        throw new Error('Error a la hora de iniciar la base de datos');
+        console.log('Error a la hora de iniciar la base de datos. La aplicación continuará funcionando sin conexión a DB.');
     }
 
 
